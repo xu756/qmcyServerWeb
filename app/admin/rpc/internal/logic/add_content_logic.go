@@ -24,6 +24,7 @@ func NewAddContentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddCon
 }
 
 func (l *AddContentLogic) AddContent(in *pb.Content) (*pb.Ok, error) {
+	var resp = new(pb.Ok)
 	result, err := l.svcCtx.MiniContentModel.AddContent(l.ctx, &miniModel.Contents{
 		Id:           in.Id,
 		Title:        in.Title,
@@ -42,7 +43,12 @@ func (l *AddContentLogic) AddContent(in *pb.Content) (*pb.Ok, error) {
 		Deleted:      in.Deleted,
 	})
 	if err != nil {
-		return nil, err
+		return resp, err
 	}
-	return &pb.Ok{}, nil
+	ok, err := result.RowsAffected()
+	if err != nil {
+		return resp, err
+	}
+	resp.Ok = ok == 1
+	return resp, nil
 }

@@ -23,7 +23,15 @@ func NewDelContentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DelCon
 }
 
 func (l *DelContentLogic) DelContent(in *pb.ContentReq) (*pb.Ok, error) {
-	// todo: add your logic here and delete this line
-
-	return &pb.Ok{}, nil
+	var resp = new(pb.Ok)
+	result, err := l.svcCtx.MiniContentModel.DelContent(l.ctx, in.Id)
+	if err != nil {
+		return resp, err
+	}
+	ok, err := result.RowsAffected()
+	if err != nil {
+		return resp, err
+	}
+	resp.Ok = ok == 1
+	return resp, nil
 }

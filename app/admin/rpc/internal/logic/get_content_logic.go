@@ -23,7 +23,25 @@ func NewGetContentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetCon
 }
 
 func (l *GetContentLogic) GetContent(in *pb.ContentReq) (*pb.Content, error) {
-	// todo: add your logic here and delete this line
-
-	return &pb.Content{}, nil
+	content, err := l.svcCtx.MiniContentModel.FindContent(l.ctx, in.Id)
+	if err != nil {
+		return new(pb.Content), err
+	}
+	return &pb.Content{
+		Id:           content.Id,
+		Title:        content.Title,
+		DescText:     content.DescText,
+		ImgUrl:       content.ImgUrl,
+		Path:         content.Path,
+		Percent:      content.Percent,
+		ContentClass: content.ContentClass,
+		ContentType:  content.ContentType,
+		ContentText:  content.ContentText,
+		ContentImg:   content.ContentImg,
+		Grade:        content.Created,
+		Created:      content.Created,
+		Edited:       content.Edited,
+		IsEdit:       content.IsEdit,
+		Deleted:      content.Deleted,
+	}, nil
 }

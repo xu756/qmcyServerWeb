@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"github.com/xu756/qmcy/common/miniModel"
 	"github.com/xu756/qmcy/pb"
 
 	"github.com/xu756/qmcy/app/admin/rpc/internal/svc"
@@ -23,7 +24,33 @@ func NewEditContentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *EditC
 }
 
 func (l *EditContentLogic) EditContent(in *pb.Content) (*pb.Ok, error) {
-	// todo: add your logic here and delete this line
+	var resp = new(pb.Ok)
 
-	return &pb.Ok{}, nil
+	result, err := l.svcCtx.MiniContentModel.EditContent(l.ctx, &miniModel.Contents{
+		Id:           in.Id,
+		Title:        in.Title,
+		DescText:     in.DescText,
+		ImgUrl:       in.ImgUrl,
+		Path:         in.Path,
+		Percent:      in.Percent,
+		ContentClass: in.ContentClass,
+		ContentType:  in.ContentType,
+		ContentText:  in.ContentText,
+		ContentImg:   in.ContentImg,
+		Grade:        in.Created,
+		Created:      in.Created,
+		Edited:       in.Edited,
+		IsEdit:       in.IsEdit,
+		Deleted:      in.Deleted,
+	})
+	if err != nil {
+		return resp, err
+	}
+	ok, err := result.RowsAffected()
+	if err != nil {
+		return resp, err
+	}
+	resp.Ok = ok == 1
+	return resp, nil
+
 }
