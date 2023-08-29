@@ -24,7 +24,7 @@ func NewDelContentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DelCon
 
 func (l *DelContentLogic) DelContent(in *pb.ContentReq) (*pb.Ok, error) {
 	var resp = new(pb.Ok)
-	result, err := l.svcCtx.MiniContentModel.DelContent(l.ctx, in.Id)
+	result, err := l.svcCtx.MiniContentModel.DelContent(l.ctx, in.Id, in.ContentClass)
 	if err != nil {
 		return resp, err
 	}

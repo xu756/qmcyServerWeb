@@ -21,8 +21,8 @@ type (
 		FindContentsByContentClass(ctx context.Context, ContentClass string, PageNum int64, PageSize int64) ([]*Contents, error)
 		AddContent(ctx context.Context, data *Contents) (sql.Result, error)
 		EditContent(ctx context.Context, data *Contents) (sql.Result, error)
-		FindContent(ctx context.Context, id int64) (*Contents, error)
-		DelContent(ctx context.Context, id int64) (sql.Result, error)
+		FindContent(ctx context.Context, id int64, ContentClass string) (*Contents, error)
+		DelContent(ctx context.Context, id int64, ContentClass string) (sql.Result, error)
 	}
 
 	customContentsModel struct {
@@ -65,10 +65,10 @@ func (m *defaultContentsModel) EditContent(ctx context.Context, data *Contents) 
 }
 
 // FindContent 查找单个内容
-func (m *defaultContentsModel) FindContent(ctx context.Context, id int64) (*Contents, error) {
+func (m *defaultContentsModel) FindContent(ctx context.Context, id int64, ContentClass string) (*Contents, error) {
 	var res Contents
-	query := fmt.Sprintf("select %s from %s where id = $1 limit 1", contentsRows, m.table)
-	err := m.QueryRowNoCacheCtx(ctx, &res, query, id)
+	query := fmt.Sprintf("select %s from %s where id = $1 limit 1 and  content_class = $2", contentsRows, m.table)
+	err := m.QueryRowNoCacheCtx(ctx, &res, query, id, contentsRows)
 	switch {
 	case err == nil:
 		return &res, nil
@@ -80,8 +80,8 @@ func (m *defaultContentsModel) FindContent(ctx context.Context, id int64) (*Cont
 }
 
 // DelContent
-func (m *defaultContentsModel) DelContent(ctx context.Context, id int64) (sql.Result, error) {
-	query := fmt.Sprintf("update %s set deleted = 1 where id = $1", m.table)
-	return m.ExecNoCacheCtx(ctx, query, id)
+func (m *defaultContentsModel) DelContent(ctx context.Context, id int64, ContentClass string) (sql.Result, error) {
+	query := fmt.Sprintf("update %s set deleted = 1 where id = $1 and  content_class = $2", m.table)
+	return m.ExecNoCacheCtx(ctx, query, id, ContentClass)
 
 }

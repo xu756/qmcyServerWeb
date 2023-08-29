@@ -64,7 +64,7 @@ func TestFindContent(t *testing.T) {
 	sqlCache := RedisConf
 	ContentsModel := NewContentsModel(conn, sqlCache)
 
-	res, err := ContentsModel.FindContent(context.Background(), 1)
+	res, err := ContentsModel.FindContent(context.Background(), 1, "banner")
 	if err != nil {
 		log.Print("err:", err)
 	}
@@ -77,7 +77,7 @@ func TestDelContent(t *testing.T) {
 	conn := postgres.New(DbSource)
 	sqlCache := RedisConf
 	ContentsModel := NewContentsModel(conn, sqlCache)
-	res, err := ContentsModel.DelContent(context.Background(), 2)
+	res, err := ContentsModel.DelContent(context.Background(), 2, "baner")
 	if err != nil {
 		log.Print("err:", err)
 	}

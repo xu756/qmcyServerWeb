@@ -23,7 +23,7 @@ func NewGetContentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetCon
 }
 
 func (l *GetContentLogic) GetContent(in *pb.ContentReq) (*pb.Content, error) {
-	content, err := l.svcCtx.MiniContentModel.FindContent(l.ctx, in.Id)
+	content, err := l.svcCtx.MiniContentModel.FindContent(l.ctx, in.Id, in.ContentClass)
 	if err != nil {
 		return new(pb.Content), err
 	}
