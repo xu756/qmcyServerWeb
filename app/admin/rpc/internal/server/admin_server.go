@@ -26,3 +26,28 @@ func (s *AdminServer) GetGroups(ctx context.Context, in *pb.GetGroupReq) (*pb.Gr
 	l := logic.NewGetGroupsLogic(ctx, s.svcCtx)
 	return l.GetGroups(in)
 }
+
+func (s *AdminServer) GetContent(ctx context.Context, in *pb.ContentReq) (*pb.Content, error) {
+	l := logic.NewGetContentLogic(ctx, s.svcCtx)
+	return l.GetContent(in)
+}
+
+func (s *AdminServer) GetContents(ctx context.Context, in *pb.ContentsReq) (*pb.ContentList, error) {
+	l := logic.NewGetContentsLogic(ctx, s.svcCtx)
+	return l.GetContents(in)
+}
+
+func (s *AdminServer) AddContent(ctx context.Context, in *pb.Content) (*pb.Ok, error) {
+	l := logic.NewAddContentLogic(ctx, s.svcCtx)
+	return l.AddContent(in)
+}
+
+func (s *AdminServer) EditContent(ctx context.Context, in *pb.Content) (*pb.Ok, error) {
+	l := logic.NewEditContentLogic(ctx, s.svcCtx)
+	return l.EditContent(in)
+}
+
+func (s *AdminServer) DelContent(ctx context.Context, in *pb.ContentReq) (*pb.Ok, error) {
+	l := logic.NewDelContentLogic(ctx, s.svcCtx)
+	return l.DelContent(in)
+}

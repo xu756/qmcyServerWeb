@@ -47,8 +47,18 @@ type GroupList {
 	List []Group `json:"list"`
 }
 
+@server(
+	prefix : /api/app/admin
+	middleware: Auth
+)
+
+service Admin {
+	@doc "获取用户组信息"
+	@handler GetGroups
+	post /getGroups (GetGroupReq) returns (GroupList)
+}
+
 // 小程序内容
-// 所有小程序内容
 type ContentReq {
 	// 类别
 	Id           int64  `json:"id"`
@@ -68,7 +78,7 @@ type ContentsReq {
 type Content {
 	Id           int64  `json:"id"`
 	Title        string `json:"title"`
-	Desc         string `json:"desc"`
+	DescText     string `json:"desc_text"`
 	ImgUrl       string `json:"img_url"`
 	Path         string `json:"path"`
 	Percent      int64  `json:"percent"`
@@ -95,15 +105,11 @@ type Ok {
 }
 
 @server(
-	prefix : /api/app/admin
+	prefix : /api/app/admin/mini
 	middleware: Auth
 )
 
 service Admin {
-	@doc "获取用户组信息"
-	@handler GetGroups
-	post /getGroups (GetGroupReq) returns (GroupList)
-
 	@doc "获取所有小程序内容"
 	@handler GetContents
 	post /getContents (ContentsReq) returns (ContentList)

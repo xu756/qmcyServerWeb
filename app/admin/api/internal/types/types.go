@@ -47,7 +47,7 @@ type ContentsReq struct {
 type Content struct {
 	Id           int64  `json:"id"`
 	Title        string `json:"title"`
-	Desc         string `json:"desc"`
+	DescText     string `json:"desc_text"`
 	ImgUrl       string `json:"img_url"`
 	Path         string `json:"path"`
 	Percent      int64  `json:"percent"`

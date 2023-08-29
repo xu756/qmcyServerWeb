@@ -19,7 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Admin_GetGroups_FullMethodName = "/pb.Admin/GetGroups"
+	Admin_GetGroups_FullMethodName   = "/pb.Admin/GetGroups"
+	Admin_GetContent_FullMethodName  = "/pb.Admin/GetContent"
+	Admin_GetContents_FullMethodName = "/pb.Admin/GetContents"
+	Admin_AddContent_FullMethodName  = "/pb.Admin/AddContent"
+	Admin_EditContent_FullMethodName = "/pb.Admin/EditContent"
+	Admin_DelContent_FullMethodName  = "/pb.Admin/DelContent"
 )
 
 // AdminClient is the client API for Admin service.
@@ -27,6 +32,11 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type AdminClient interface {
 	GetGroups(ctx context.Context, in *GetGroupReq, opts ...grpc.CallOption) (*GroupList, error)
+	GetContent(ctx context.Context, in *ContentReq, opts ...grpc.CallOption) (*Content, error)
+	GetContents(ctx context.Context, in *ContentsReq, opts ...grpc.CallOption) (*ContentList, error)
+	AddContent(ctx context.Context, in *Content, opts ...grpc.CallOption) (*Ok, error)
+	EditContent(ctx context.Context, in *Content, opts ...grpc.CallOption) (*Ok, error)
+	DelContent(ctx context.Context, in *ContentReq, opts ...grpc.CallOption) (*Ok, error)
 }
 
 type adminClient struct {
@@ -46,11 +56,61 @@ func (c *adminClient) GetGroups(ctx context.Context, in *GetGroupReq, opts ...gr
 	return out, nil
 }
 
+func (c *adminClient) GetContent(ctx context.Context, in *ContentReq, opts ...grpc.CallOption) (*Content, error) {
+	out := new(Content)
+	err := c.cc.Invoke(ctx, Admin_GetContent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) GetContents(ctx context.Context, in *ContentsReq, opts ...grpc.CallOption) (*ContentList, error) {
+	out := new(ContentList)
+	err := c.cc.Invoke(ctx, Admin_GetContents_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) AddContent(ctx context.Context, in *Content, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
+	err := c.cc.Invoke(ctx, Admin_AddContent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) EditContent(ctx context.Context, in *Content, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
+	err := c.cc.Invoke(ctx, Admin_EditContent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminClient) DelContent(ctx context.Context, in *ContentReq, opts ...grpc.CallOption) (*Ok, error) {
+	out := new(Ok)
+	err := c.cc.Invoke(ctx, Admin_DelContent_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminServer is the server API for Admin service.
 // All implementations must embed UnimplementedAdminServer
 // for forward compatibility
 type AdminServer interface {
 	GetGroups(context.Context, *GetGroupReq) (*GroupList, error)
+	GetContent(context.Context, *ContentReq) (*Content, error)
+	GetContents(context.Context, *ContentsReq) (*ContentList, error)
+	AddContent(context.Context, *Content) (*Ok, error)
+	EditContent(context.Context, *Content) (*Ok, error)
+	DelContent(context.Context, *ContentReq) (*Ok, error)
 	mustEmbedUnimplementedAdminServer()
 }
 
@@ -60,6 +120,21 @@ type UnimplementedAdminServer struct {
 
 func (UnimplementedAdminServer) GetGroups(context.Context, *GetGroupReq) (*GroupList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetGroups not implemented")
+}
+func (UnimplementedAdminServer) GetContent(context.Context, *ContentReq) (*Content, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetContent not implemented")
+}
+func (UnimplementedAdminServer) GetContents(context.Context, *ContentsReq) (*ContentList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetContents not implemented")
+}
+func (UnimplementedAdminServer) AddContent(context.Context, *Content) (*Ok, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddContent not implemented")
+}
+func (UnimplementedAdminServer) EditContent(context.Context, *Content) (*Ok, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method EditContent not implemented")
+}
+func (UnimplementedAdminServer) DelContent(context.Context, *ContentReq) (*Ok, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DelContent not implemented")
 }
 func (UnimplementedAdminServer) mustEmbedUnimplementedAdminServer() {}
 
@@ -92,6 +167,96 @@ func _Admin_GetGroups_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Admin_GetContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ContentReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).GetContent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_GetContent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).GetContent(ctx, req.(*ContentReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_GetContents_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ContentsReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).GetContents(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_GetContents_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).GetContents(ctx, req.(*ContentsReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_AddContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Content)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).AddContent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_AddContent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).AddContent(ctx, req.(*Content))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_EditContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Content)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).EditContent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_EditContent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).EditContent(ctx, req.(*Content))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Admin_DelContent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ContentReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminServer).DelContent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Admin_DelContent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminServer).DelContent(ctx, req.(*ContentReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Admin_ServiceDesc is the grpc.ServiceDesc for Admin service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -102,6 +267,26 @@ var Admin_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetGroups",
 			Handler:    _Admin_GetGroups_Handler,
+		},
+		{
+			MethodName: "GetContent",
+			Handler:    _Admin_GetContent_Handler,
+		},
+		{
+			MethodName: "GetContents",
+			Handler:    _Admin_GetContents_Handler,
+		},
+		{
+			MethodName: "AddContent",
+			Handler:    _Admin_AddContent_Handler,
+		},
+		{
+			MethodName: "EditContent",
+			Handler:    _Admin_EditContent_Handler,
+		},
+		{
+			MethodName: "DelContent",
+			Handler:    _Admin_DelContent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

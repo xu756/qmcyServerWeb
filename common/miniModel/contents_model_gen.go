@@ -43,7 +43,7 @@ type (
 		UpdatedAt    sql.NullTime `db:"updated_at"`
 		DeletedAt    sql.NullTime `db:"deleted_at"`
 		Title        string       `db:"title"`
-		Desc         string       `db:"desc"`
+		DescText     string       `db:"desc_text"`
 		ImgUrl       string       `db:"img_url"`
 		Path         string       `db:"path"`
 		Percent      int64        `db:"percent"`
@@ -103,7 +103,7 @@ func (m *defaultContentsModel) Insert(ctx context.Context, data *Contents) (sql.
 	publicContentsIdKey := fmt.Sprintf("%s%v", cachePublicContentsIdPrefix, data.Id)
 	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
 		query := fmt.Sprintf("insert into %s (%s) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)", m.table, contentsRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.CreatedAt, data.UpdatedAt, data.DeletedAt, data.Title, data.Desc, data.ImgUrl, data.Path, data.Percent, data.ContentClass, data.ContentType, data.ContentText, data.ContentImg, data.Grade, data.Created, data.Edited, data.IsEdit, data.Deleted)
+		return conn.ExecCtx(ctx, query, data.CreatedAt, data.UpdatedAt, data.DeletedAt, data.Title, data.DescText, data.ImgUrl, data.Path, data.Percent, data.ContentClass, data.ContentType, data.ContentText, data.ContentImg, data.Grade, data.Created, data.Edited, data.IsEdit, data.Deleted)
 	}, publicContentsIdKey)
 	return ret, err
 }
@@ -112,7 +112,7 @@ func (m *defaultContentsModel) Update(ctx context.Context, data *Contents) error
 	publicContentsIdKey := fmt.Sprintf("%s%v", cachePublicContentsIdPrefix, data.Id)
 	_, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
 		query := fmt.Sprintf("update %s set %s where id = $1", m.table, contentsRowsWithPlaceHolder)
-		return conn.ExecCtx(ctx, query, data.Id, data.CreatedAt, data.UpdatedAt, data.DeletedAt, data.Title, data.Desc, data.ImgUrl, data.Path, data.Percent, data.ContentClass, data.ContentType, data.ContentText, data.ContentImg, data.Grade, data.Created, data.Edited, data.IsEdit, data.Deleted)
+		return conn.ExecCtx(ctx, query, data.Id, data.CreatedAt, data.UpdatedAt, data.DeletedAt, data.Title, data.DescText, data.ImgUrl, data.Path, data.Percent, data.ContentClass, data.ContentType, data.ContentText, data.ContentImg, data.Grade, data.Created, data.Edited, data.IsEdit, data.Deleted)
 	}, publicContentsIdKey)
 	return err
 }

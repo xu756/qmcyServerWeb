@@ -4,38 +4,33 @@ import (
 	"context"
 	"github.com/xu756/qmcy/pb"
 
-	"github.com/xu756/qmcy/app/admin/api/internal/svc"
-	"github.com/xu756/qmcy/app/admin/api/internal/types"
-
+	"github.com/xu756/qmcy/app/admin/rpc/internal/svc"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
 type GetContentsLogic struct {
-	logx.Logger
 	ctx    context.Context
 	svcCtx *svc.ServiceContext
+	logx.Logger
 }
 
 func NewGetContentsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetContentsLogic {
 	return &GetContentsLogic{
-		Logger: logx.WithContext(ctx),
 		ctx:    ctx,
 		svcCtx: svcCtx,
+		Logger: logx.WithContext(ctx),
 	}
 }
 
-func (l *GetContentsLogic) GetContents(req *types.ContentsReq) (resp *types.ContentList, err error) {
-	contents, err := l.svcCtx.AdminRpc.GetContents(l.ctx, &pb.ContentsReq{
-		ContentClass: req.ContentClass,
-		PageNum:      req.PageNum,
-		PageSize:     req.PageSize,
-	})
+func (l *GetContentsLogic) GetContents(in *pb.ContentsReq) (*pb.ContentList, error) {
+	var resp = &pb.ContentList{}
+	contents, err := l.svcCtx.MiniContentModel.FindContentsByContentClass(l.ctx, in.ContentClass, in.PageNum, in.PageSize)
 	if err != nil {
-		return nil, err
+		return resp, err
 	}
-	var list = make([]types.Content, 0)
-	for _, content := range contents.List {
-		list = append(list, types.Content{
+	resp.Total = int64(len(contents))
+	for _, content := range contents {
+		resp.List = append(resp.List, &pb.Content{
 			Id:           content.Id,
 			Title:        content.Title,
 			DescText:     content.DescText,
@@ -53,8 +48,5 @@ func (l *GetContentsLogic) GetContents(req *types.ContentsReq) (resp *types.Cont
 			Deleted:      content.Deleted,
 		})
 	}
-	return &types.ContentList{
-		Total: contents.Total,
-		List:  list,
-	}, nil
+	return resp, nil
 }

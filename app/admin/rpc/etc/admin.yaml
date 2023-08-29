@@ -16,3 +16,4 @@ Cache:
     Pass: Y5dg5tg8050oigInC30sf
 
 DbSource: postgres://root:fyU0bj2KLndYN6CKYubb@postgresql:5432/devserve?sslmode=disable
+MiniDbSource: postgres://root:fyU0bj2KLndYN6CKYubb@postgresql:5432/qmcy_mini?sslmode=disable

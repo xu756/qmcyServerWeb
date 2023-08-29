@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"github.com/xu756/qmcy/pb"
 
 	"github.com/xu756/qmcy/app/admin/api/internal/svc"
 	"github.com/xu756/qmcy/app/admin/api/internal/types"
@@ -24,7 +25,14 @@ func NewDelContentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DelCon
 }
 
 func (l *DelContentLogic) DelContent(req *types.ContentReq) (resp *types.Ok, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+	ok, err := l.svcCtx.AdminRpc.DelContent(l.ctx, &pb.ContentReq{
+		Id:           req.Id,
+		ContentClass: req.ContentClass,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.Ok{
+		Ok: ok.Ok,
+	}, nil
 }

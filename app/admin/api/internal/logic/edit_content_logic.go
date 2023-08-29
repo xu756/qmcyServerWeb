@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"github.com/xu756/qmcy/pb"
 
 	"github.com/xu756/qmcy/app/admin/api/internal/svc"
 	"github.com/xu756/qmcy/app/admin/api/internal/types"
@@ -24,7 +25,27 @@ func NewEditContentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *EditC
 }
 
 func (l *EditContentLogic) EditContent(req *types.Content) (resp *types.Ok, err error) {
-	// todo: add your logic here and delete this line
-
-	return
+	ok, err := l.svcCtx.AdminRpc.EditContent(l.ctx, &pb.Content{
+		Id:           req.Id,
+		Title:        req.Title,
+		DescText:     req.DescText,
+		ImgUrl:       req.ImgUrl,
+		Path:         req.Path,
+		Percent:      req.Percent,
+		ContentClass: req.ContentClass,
+		ContentType:  req.ContentType,
+		ContentText:  req.ContentText,
+		ContentImg:   req.ContentImg,
+		Grade:        req.Created,
+		Created:      req.Created,
+		Edited:       req.Edited,
+		IsEdit:       req.IsEdit,
+		Deleted:      req.Deleted,
+	})
+	if err != nil {
+		return nil, err
+	}
+	return &types.Ok{
+		Ok: ok.Ok,
+	}, nil
 }

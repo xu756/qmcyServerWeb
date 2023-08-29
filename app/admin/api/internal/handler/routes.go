@@ -19,6 +19,15 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Path:    "/getGroups",
 					Handler: GetGroupsHandler(serverCtx),
 				},
+			}...,
+		),
+		rest.WithPrefix("/api/app/admin"),
+	)
+
+	server.AddRoutes(
+		rest.WithMiddlewares(
+			[]rest.Middleware{serverCtx.Auth},
+			[]rest.Route{
 				{
 					Method:  http.MethodPost,
 					Path:    "/getContents",
@@ -46,6 +55,6 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				},
 			}...,
 		),
-		rest.WithPrefix("/api/app/admin"),
+		rest.WithPrefix("/api/app/admin/mini"),
 	)
 }

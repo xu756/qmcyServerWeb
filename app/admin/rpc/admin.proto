@@ -36,6 +36,50 @@ message GroupList {
   repeated Group List = 2;
 }
 
+
+// 小程序内容
+message ContentReq{
+  int64  Id = 1;
+  string ContentClass = 2;
+}
+//所有内容
+message ContentsReq{
+  string  ContentClass = 1;
+  int64 PageNum = 2;// 页码
+  int64 PageSize = 3;// 每页数量
+}
+
+//内容
+message Content{
+  int64 Id = 1;
+  string Title = 2;
+  string DescText = 3;
+  string ImgUrl = 4;
+  string Path = 5;
+  int64 Percent = 6;
+  string ContentClass = 7;
+  int64 ContentType = 8;
+  string ContentText = 9;
+  string ContentImg = 10;
+  int64 Grade = 11;
+  int64 Created = 12;
+  int64 Edited = 13;
+  int64 IsEdit = 14;
+  int64 Deleted = 15;
+}
+
+message ContentList{
+  int64 Total = 1;
+  repeated Content List = 2;
+}
+message Ok{
+  bool Ok = 1;
+}
 service Admin {
   rpc GetGroups(GetGroupReq) returns (GroupList);
+  rpc GetContent(ContentReq) returns (Content);
+  rpc GetContents(ContentsReq) returns (ContentList);
+  rpc AddContent(Content) returns (Ok);
+  rpc EditContent(Content) returns (Ok);
+  rpc DelContent(ContentReq) returns (Ok);
 }

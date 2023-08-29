@@ -8,7 +8,8 @@ import (
 
 type Config struct {
 	zrpc.RpcServerConf
-	Cache     cache.CacheConf
-	RedisConf redis.RedisConf
-	DbSource  string
+	Cache        cache.CacheConf
+	RedisConf    redis.RedisConf
+	DbSource     string
+	MiniDbSource string
 }
