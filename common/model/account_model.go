@@ -33,8 +33,8 @@ func NewAccountModel(conn sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option)
 
 // LoginInsert 插入账号信息
 func (m *defaultAccountModel) LoginInsert(ctx context.Context, data *Account) (sql.Result, error) {
-	query := fmt.Sprintf("insert into %s (%s) values ($1, $2, $3, $4, $5, $6, $7, $8, $9)", m.table, accountRowsExpectAutoSet)
-	cacheCtx, err := m.ExecNoCacheCtx(ctx, query, data.Id, data.UserId, data.OpenCode, data.Category, data.Created, data.CreateRpc, data.Edited, data.Editor, data.Deleted)
+	query := fmt.Sprintf("insert into %s (user_id,open_code,category,created,create_rpc,edited,editor,deleted) values ($1, $2, $3, $4, $5, $6, $7, $8)", m.table)
+	cacheCtx, err := m.ExecNoCacheCtx(ctx, query, data.UserId, data.OpenCode, data.Category, data.Created, data.CreateRpc, data.Edited, data.Editor, data.Deleted)
 	if err != nil {
 		return nil, xerr.NewDbErr("插入账号信息失败", err)
 	}

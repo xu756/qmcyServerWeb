@@ -18,7 +18,7 @@ import (
 var (
 	userFieldNames          = builder.RawFieldNames(&User{}, true)
 	userRows                = strings.Join(userFieldNames, ",")
-	userRowsExpectAutoSet   = strings.Join(stringx.Remove(userFieldNames), ",")
+	userRowsExpectAutoSet   = strings.Join(stringx.Remove(userFieldNames, "id"), ",")
 	userRowsWithPlaceHolder = builder.PostgreSqlJoin(stringx.Remove(userFieldNames, "id"))
 
 	cachePublicUserIdPrefix = "cache:public:user:id:"
@@ -96,8 +96,8 @@ func (m *defaultUserModel) FindOne(ctx context.Context, id int64) (*User, error)
 func (m *defaultUserModel) Insert(ctx context.Context, data *User) (sql.Result, error) {
 	publicUserIdKey := fmt.Sprintf("%s%v", cachePublicUserIdPrefix, data.Id)
 	ret, err := m.ExecCtx(ctx, func(ctx context.Context, conn sqlx.SqlConn) (result sql.Result, err error) {
-		query := fmt.Sprintf("insert into %s (%s) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)", m.table, userRowsExpectAutoSet)
-		return conn.ExecCtx(ctx, query, data.Id, data.State, data.Name, data.HeadImgUrl, data.Mobile, data.Salt, data.Password, data.Created, data.Creator, data.Edited, data.Editor, data.Deleted)
+		query := fmt.Sprintf("insert into %s (%s) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", m.table, userRowsExpectAutoSet)
+		return conn.ExecCtx(ctx, query, data.State, data.Name, data.HeadImgUrl, data.Mobile, data.Salt, data.Password, data.Created, data.Creator, data.Edited, data.Editor, data.Deleted)
 	}, publicUserIdKey)
 	return ret, err
 }

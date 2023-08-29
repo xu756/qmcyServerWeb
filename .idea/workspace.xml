@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="更新">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/rpc/internal/logic/del_content_logic.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/rpc/internal/logic/del_content_logic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/rpc/internal/logic/get_content_logic.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/rpc/internal/logic/get_content_logic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/miniModel/contents_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/miniModel/contents_model.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/miniModel/contents_model_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/miniModel/contents_model_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/model.sh" beforeDir="false" afterPath="$PROJECT_DIR$/common/model.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/model/account_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/model/account_model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/model/user_model_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/model/user_model_gen.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
