@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "./proto";
+
+
+message GetGroupReq{
+  int64  Id = 1;
+  int64 PageNum = 2;// 页码
+  int64 PageSize = 3;// 每页数量
+}
+
+message GroupUserInfo{
+  int64  Id = 1;
+  int64 State = 2;
+  string Name = 3;
+  string HeadImgUrl = 4;
+  string Mobile = 5;
+  int64 Deleted = 6;
+}
+
+message Group {
+  string Name = 1;
+  string Code = 2;
+  string Intro = 3;
+  int64 Created = 4;
+  GroupUserInfo Creator = 5;
+  int64 Edited = 6;
+  GroupUserInfo Editor = 7;
+  int64 Level = 8;
+  repeated  Group Children = 9;
+}
+
+message GroupList {
+  int64 Total = 1;
+  repeated Group List = 2;
+}
+
+service Admin {
+  rpc GetGroups(GetGroupReq) returns (GroupList);
+}

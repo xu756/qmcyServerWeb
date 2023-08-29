@@ -1,0 +1,49 @@
+version: '3'
+networks:
+  env_net:
+    external: true
+
+
+services:
+  app:
+    image: mymodd:latest
+    container_name: app
+    working_dir: /go/app
+    networks:
+      - env_net
+    volumes:
+      - /Users/xu756/开发/绮梦次元app/qmcyServerWeb:/go/app
+
+  etcd:
+    image: bitnami/etcd:latest
+    container_name: etcd
+    environment:
+      - ALLOW_NONE_AUTHENTICATION=yes
+      - ETCD_ADVERTISE_CLIENT_URLS=http://etcd:2379
+    networks:
+      - env_net
+
+  redis:
+    image: redis:7.0.11
+    container_name: redis
+    command: redis-server --requirepass Y5dg5tg8050oigInC30sf --appendonly yes
+    ports:
+      - "16379:6379"
+    restart: always
+    networks:
+      - env_net
+
+#  influxdb:
+#    image: influxdb:1.8.10
+#    container_name: influxdb
+#    ports:
+#      - "18886:8086"
+#    environment:
+#      TZ: Asia/Shanghai
+#      DOCKER_INFLUXDB_INIT_USERNAME: root
+#      DOCKER_INFLUXDB_INIT_PASSWORD: VBrxAR87kVuC9bxYjDpH
+#      DOCKER_INFLUXDB_INIT_ORG: my-org
+#      DOCKER_INFLUXDB_INIT_BUCKET: my-bucket
+#      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: 1q2w3e4r5t6y7u8i9o0p
+#    networks:
+#      - serve_net

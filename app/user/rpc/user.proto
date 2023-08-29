@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package pb;
+option go_package = "./proto";
+
+
+// 空消息
+message Empty {}
+
+message UserInfoRequest {
+  int64 Id = 1;
+}
+// 返回用户信息
+message UserInfo {
+  int64 Id = 1;
+  string Name = 2;
+  string Avatar = 3;
+  repeated int64 Role = 4;
+  string GroupCode = 5;
+}
+
+// 返回用户信息
+service User {
+  rpc GetUserInfo (UserInfoRequest) returns (UserInfo) {}
+}

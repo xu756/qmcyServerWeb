@@ -1,0 +1,32 @@
+syntax = "v1"
+
+info(
+	title: "用户api"
+	desc: "用户的api"
+	author: "xu756"
+	email: "756334744@qq.com"
+	version: "v1"
+)
+
+// 空的api
+type Empty {
+}
+// 返回用户信息
+type UserInfo {
+	Id int64 `json:"id" desc:"用户id"`
+	Name string `json:"name" desc:"用户名称"`
+	Avatar string `json:"avatar" desc:"用户头像"`
+	Role []int64 `json:"role" desc:"用户角色"`
+	GroupCode string `json:"group_code" desc:"用户组"`
+}
+
+@server(
+	prefix : /api/app/user
+	middleware: Auth
+)
+
+service User {
+	@doc "获取用户信息"
+	@handler GetUserInfo
+	post /getUserInfo returns (UserInfo)
+}

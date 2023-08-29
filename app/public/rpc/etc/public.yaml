@@ -1,0 +1,26 @@
+Name: public.rpc
+ListenOn: 0.0.0.0:13002
+Etcd:
+  Hosts:
+    - etcd:2379
+  Key: public.rpc
+
+Cache:
+  - Host: redis:6379
+    Pass: Y5dg5tg8050oigInC30sf
+
+DbSource: postgres://root:fyU0bj2KLndYN6CKYubb@postgresql:5432/devserve?sslmode=disable
+
+RedisConf:
+  Host: redis:6379
+  Type: node
+  Pass: Y5dg5tg8050oigInC30sf
+
+Jwt:
+  SignKey: u@n}8atwChc#+h@o1b.+RA-Q+w
+  Expire: 86400
+
+# 微信小程序配置
+WxMiniConf:
+  AppId: wxccc7794178b4a866
+  Secret: 8a257e6b1dcf65db3fd4bbcebe85047c

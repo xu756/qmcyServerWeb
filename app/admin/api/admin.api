@@ -1,0 +1,126 @@
+syntax = "v1"
+
+info(
+	title: "管理员api"
+	desc: "管理员api"
+	author: "xu756"
+	email: "756334744@qq.com"
+	version: "v1"
+)
+
+// 获取公司列表
+type GetGroupReq {
+	// id
+	Id int64 `json:"id"`
+	// 页码
+	PageNum int64 `json:"pageNum"`
+	// 每页数量
+	PageSize int64 `json:"pageSize"`
+}
+type User {
+	Id         int64  `json:"id"`
+	State      int64  `json:"state"`
+	Name       string `json:"name"`
+	HeadImgUrl string `json:"headImgUrl"`
+	Mobile     string `json:"mobile"`
+	Deleted    int64  `json:"deleted"`
+}
+
+// Groups 用户组
+type Group {
+	Name     string  `json:"name"`
+	Code     string  `json:"code"`
+	Intro    string  `json:"intro"`
+	Created  int64   `json:"created"`
+	Creator  User    `json:"creator"`
+	Edited   int64   `json:"edited"`
+	Editor   User    `json:"editor"`
+	Level    int64   `json:"level"` // 用户组层级
+	Children []Group `json:"children"`
+}
+
+// 用户组列表
+type GroupList {
+	// 总数
+	Total int64 `json:"total"`
+	// 列表
+	List []Group `json:"list"`
+}
+
+// 小程序内容
+// 所有小程序内容
+type ContentReq {
+	// 类别
+	Id           int64  `json:"id"`
+	ContentClass string `json:"content_class"`
+}
+
+// 所有小程序内容
+type ContentsReq {
+	// 类别
+	ContentClass string `json:"content_class"`
+	PageNum      int64  `json:"pageNum"`
+	// 每页数量
+	PageSize int64 `json:"pageSize"`
+}
+
+//小程序单条
+type Content {
+	Id           int64  `json:"id"`
+	Title        string `json:"title"`
+	Desc         string `json:"desc"`
+	ImgUrl       string `json:"img_url"`
+	Path         string `json:"path"`
+	Percent      int64  `json:"percent"`
+	ContentClass string `json:"content_class"`
+	ContentType  int64  `json:"content_type"`
+	ContentText  string `json:"content_text"`
+	ContentImg   string `json:"content_img"`
+	Grade        int64  `json:"grade"`
+	Created      int64  `json:"created"`
+	Edited       int64  `json:"edited"`
+	IsEdit       int64  `json:"is_edit"`
+	Deleted      int64  `json:"deleted"`
+}
+
+type ContentList {
+	// 总数
+	Total int64 `json:"total"`
+	// 列表
+	List []Content `json:"list"`
+}
+
+type Ok {
+	Ok bool `json:"ok"`
+}
+
+@server(
+	prefix : /api/app/admin
+	middleware: Auth
+)
+
+service Admin {
+	@doc "获取用户组信息"
+	@handler GetGroups
+	post /getGroups (GetGroupReq) returns (GroupList)
+
+	@doc "获取所有小程序内容"
+	@handler GetContents
+	post /getContents (ContentsReq) returns (ContentList)
+
+	@doc "获取小程序内容"
+	@handler GetContent
+	post /getContent (ContentReq) returns (Content)
+
+	@doc "添加小程序内容"
+	@handler AddContent
+	post /addContent (Content) returns (Ok)
+
+	@doc "修改小程序内容"
+	@handler EditContent
+	post /editContent (Content) returns (Ok)
+
+	@doc "删除小程序内容"
+	@handler DelContent
+	post /delContent (ContentReq) returns (Ok)
+}

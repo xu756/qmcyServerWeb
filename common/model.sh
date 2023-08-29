@@ -1,0 +1,1 @@
+goctl model pg datasource --url postgres://root:fyU0bj2KLndYN6CKYubb@localhost:15432/qmcy_mini?sslmode=disable --cache --style go_zero  --table  user
