@@ -45,8 +45,11 @@ message ContentReq{
 //所有内容
 message ContentsReq{
   string  ContentClass = 1;
-  int64 PageNum = 2;// 页码
+  int64 Current = 2;// 页码
   int64 PageSize = 3;// 每页数量
+  string Title = 4;
+  string DescText = 5;
+  string Path = 6;
 }
 
 //内容

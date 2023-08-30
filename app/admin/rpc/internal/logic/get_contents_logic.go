@@ -24,7 +24,7 @@ func NewGetContentsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetCo
 
 func (l *GetContentsLogic) GetContents(in *pb.ContentsReq) (*pb.ContentList, error) {
 	var resp = &pb.ContentList{}
-	contents, total, err := l.svcCtx.MiniContentModel.FindContentsByContentClass(l.ctx, in.ContentClass, in.PageNum, in.PageSize)
+	contents, total, err := l.svcCtx.MiniContentModel.FindContentsByContentClass(l.ctx, in.ContentClass, in.Current, in.PageSize, in.Title, in.DescText, in.Path)
 	if err != nil {
 		return resp, err
 	}

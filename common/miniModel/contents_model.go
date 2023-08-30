@@ -18,7 +18,7 @@ type (
 	// and implement the added methods in customContentsModel.
 	ContentsModel interface {
 		contentsModel
-		FindContentsByContentClass(ctx context.Context, ContentClass string, PageNum int64, PageSize int64) ([]*Contents, int64, error)
+		FindContentsByContentClass(ctx context.Context, ContentClass string, Current int64, PageSize int64, Title, DescText, Path string) ([]*Contents, int64, error)
 		AddContent(ctx context.Context, data *Contents) (sql.Result, error)
 		EditContent(ctx context.Context, data *Contents) (sql.Result, error)
 		FindContent(ctx context.Context, id int64, ContentClass string) (*Contents, error)
@@ -37,18 +37,22 @@ func NewContentsModel(conn sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option
 	}
 }
 
+func toLike(s string) string {
+	return fmt.Sprintf("%%%s%%", s)
+}
+
 // FindContentsByContentClass 根据内容分类查找内容
-func (m *defaultContentsModel) FindContentsByContentClass(ctx context.Context, ContentClass string, PageNum int64, PageSize int64) ([]*Contents, int64, error) {
+func (m *defaultContentsModel) FindContentsByContentClass(ctx context.Context, ContentClass string, Current int64, PageSize int64, Title, DescText, Path string) ([]*Contents, int64, error) {
 
 	var res1 []*Contents
-	query := fmt.Sprintf("select %s from %s where content_class = $1 order by id limit $2 offset $3 ", contentsRows, m.table)
-	err := m.QueryRowsNoCacheCtx(ctx, &res1, query, ContentClass, PageSize, (PageNum-1)*PageSize)
+	query := fmt.Sprintf("select %s from %s where content_class = $1  and title like $2 and desc_text like $3 and path like $4  order by id limit $5 offset $6 ", contentsRows, m.table)
+	err := m.QueryRowsNoCacheCtx(ctx, &res1, query, ContentClass, toLike(Title), toLike(DescText), toLike(Path), PageSize, (Current-1)*PageSize)
 	switch {
 	case err == nil:
 		var res2 []*Contents
 		var total int64 = 0
-		query := fmt.Sprintf("select %s from %s where content_class = $1 ", contentsRows, m.table)
-		err := m.QueryRowsNoCacheCtx(ctx, &res2, query, ContentClass)
+		query := fmt.Sprintf("select %s from %s where content_class = $1  and title like $2 and desc_text like $3 and path like $4  ", contentsRows, m.table)
+		err := m.QueryRowsNoCacheCtx(ctx, &res2, query, ContentClass, toLike(Title), toLike(DescText), toLike(Path))
 		if err != nil {
 			total = 0
 		}
@@ -92,5 +96,4 @@ func (m *defaultContentsModel) FindContent(ctx context.Context, id int64, Conten
 func (m *defaultContentsModel) DelContent(ctx context.Context, id int64, ContentClass string) (sql.Result, error) {
 	query := fmt.Sprintf("update %s set deleted = 1 where id = $1 and  content_class = $2", m.table)
 	return m.ExecNoCacheCtx(ctx, query, id, ContentClass)
-
 }

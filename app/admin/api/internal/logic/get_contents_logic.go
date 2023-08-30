@@ -27,8 +27,11 @@ func NewGetContentsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetCo
 func (l *GetContentsLogic) GetContents(req *types.ContentsReq) (resp *types.ContentList, err error) {
 	contents, err := l.svcCtx.AdminRpc.GetContents(l.ctx, &pb.ContentsReq{
 		ContentClass: req.ContentClass,
-		PageNum:      req.PageNum,
+		Current:      req.Current,
 		PageSize:     req.PageSize,
+		Title:        req.Title,
+		DescText:     req.DescText,
+		Path:         req.Path,
 	})
 	if err != nil {
 		return nil, err

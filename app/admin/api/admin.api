@@ -69,9 +69,12 @@ type ContentReq {
 type ContentsReq {
 	// 类别
 	ContentClass string `json:"content_class"`
-	PageNum int64 `json:"pageNum"`
+	Current int64 `json:"current"`
 	// 每页数量
 	PageSize int64 `json:"pageSize"`
+	Title string `json:"title,optional"`
+	DescText string `json:"desc_text,optional"`
+	Path string `json:"path,optional"`
 }
 
 //小程序单条

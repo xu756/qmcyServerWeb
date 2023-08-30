@@ -40,8 +40,11 @@ type ContentReq struct {
 
 type ContentsReq struct {
 	ContentClass string `json:"content_class"`
-	PageNum      int64  `json:"pageNum"`
+	Current      int64  `json:"current"`
 	PageSize     int64  `json:"pageSize"`
+	Title        string `json:"title,optional"`
+	DescText     string `json:"desc_text,optional"`
+	Path         string `json:"path,optional"`
 }
 
 type Content struct {
