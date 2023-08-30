@@ -14,12 +14,12 @@ func TestFindContents(t *testing.T) {
 	sqlCache := RedisConf
 	ContentsModel := NewContentsModel(conn, sqlCache)
 
-	res, err := ContentsModel.FindContentsByContentClass(context.Background(), "banner", 1, 1)
+	res, total, err := ContentsModel.FindContentsByContentClass(context.Background(), "banner", 1, 1)
 	if err != nil {
 		log.Print("err:", err)
 	}
 
-	fmt.Print(res)
+	fmt.Print(res, total)
 
 }
 

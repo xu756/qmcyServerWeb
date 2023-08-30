@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"github.com/xu756/qmcy/common/result"
 	"net/http"
 
 	"github.com/xu756/qmcy/app/admin/api/internal/logic"

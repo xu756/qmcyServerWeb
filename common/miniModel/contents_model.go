@@ -18,7 +18,7 @@ type (
 	// and implement the added methods in customContentsModel.
 	ContentsModel interface {
 		contentsModel
-		FindContentsByContentClass(ctx context.Context, ContentClass string, PageNum int64, PageSize int64) ([]*Contents, error)
+		FindContentsByContentClass(ctx context.Context, ContentClass string, PageNum int64, PageSize int64) ([]*Contents, int64, error)
 		AddContent(ctx context.Context, data *Contents) (sql.Result, error)
 		EditContent(ctx context.Context, data *Contents) (sql.Result, error)
 		FindContent(ctx context.Context, id int64, ContentClass string) (*Contents, error)
@@ -38,17 +38,26 @@ func NewContentsModel(conn sqlx.SqlConn, c cache.CacheConf, opts ...cache.Option
 }
 
 // FindContentsByContentClass 根据内容分类查找内容
-func (m *defaultContentsModel) FindContentsByContentClass(ctx context.Context, ContentClass string, PageNum int64, PageSize int64) ([]*Contents, error) {
-	var res []*Contents
-	query := fmt.Sprintf("select %s from %s where content_class = $1 limit $2 offset $3", contentsRows, m.table)
-	err := m.QueryRowsNoCacheCtx(ctx, &res, query, ContentClass, PageSize, (PageNum-1)*PageSize)
+func (m *defaultContentsModel) FindContentsByContentClass(ctx context.Context, ContentClass string, PageNum int64, PageSize int64) ([]*Contents, int64, error) {
+
+	var res1 []*Contents
+	query := fmt.Sprintf("select %s from %s where content_class = $1 order by id limit $2 offset $3 ", contentsRows, m.table)
+	err := m.QueryRowsNoCacheCtx(ctx, &res1, query, ContentClass, PageSize, (PageNum-1)*PageSize)
 	switch {
 	case err == nil:
-		return res, nil
+		var res2 []*Contents
+		var total int64 = 0
+		query := fmt.Sprintf("select %s from %s where content_class = $1 ", contentsRows, m.table)
+		err := m.QueryRowsNoCacheCtx(ctx, &res2, query, ContentClass)
+		if err != nil {
+			total = 0
+		}
+		total = int64(len(res2))
+		return res1, total, nil
 	case errors.Is(err, sqlc.ErrNotFound):
-		return nil, ErrNotFound
+		return nil, 0, ErrNotFound
 	default:
-		return nil, xerr.NewDbErr("数据库查询失败", err)
+		return nil, 0, xerr.NewDbErr("数据库查询失败", err)
 	}
 }
 

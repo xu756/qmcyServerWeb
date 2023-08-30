@@ -33,6 +33,6 @@ func main() {
 	})
 	defer s.Stop()
 
-	fmt.Printf("【 admin-rpc 】  server at %s...\n", c.ListenOn)
+	fmt.Printf("【 admin-rpc 】 server at %s...\n", c.ListenOn)
 	s.Start()
 }

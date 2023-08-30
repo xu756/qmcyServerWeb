@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="更新">
+    <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="change">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/model.sh" beforeDir="false" afterPath="$PROJECT_DIR$/common/model.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/model/account_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/model/account_model.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/model/user_model_gen.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/model/user_model_gen.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/api/admin.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/api/admin.api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/api/internal/handler/add_content_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/api/internal/handler/add_content_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/api/internal/handler/del_content_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/api/internal/handler/del_content_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/api/internal/handler/edit_content_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/api/internal/handler/edit_content_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/api/internal/handler/get_content_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/api/internal/handler/get_content_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/api/internal/handler/get_contents_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/api/internal/handler/get_contents_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/rpc/admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/rpc/admin.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/admin/rpc/internal/logic/get_contents_logic.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/rpc/internal/logic/get_contents_logic.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/miniModel/contents_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/miniModel/contents_model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/miniModel/contents_model_test.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/miniModel/contents_model_test.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +168,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="更新" />
+    <MESSAGE value="change" />
+    <option name="LAST_COMMIT_MESSAGE" value="change" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

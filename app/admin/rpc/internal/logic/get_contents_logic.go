@@ -24,11 +24,11 @@ func NewGetContentsLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetCo
 
 func (l *GetContentsLogic) GetContents(in *pb.ContentsReq) (*pb.ContentList, error) {
 	var resp = &pb.ContentList{}
-	contents, err := l.svcCtx.MiniContentModel.FindContentsByContentClass(l.ctx, in.ContentClass, in.PageNum, in.PageSize)
+	contents, total, err := l.svcCtx.MiniContentModel.FindContentsByContentClass(l.ctx, in.ContentClass, in.PageNum, in.PageSize)
 	if err != nil {
 		return resp, err
 	}
-	resp.Total = int64(len(contents))
+	resp.Total = total
 	for _, content := range contents {
 		resp.List = append(resp.List, &pb.Content{
 			Id:           content.Id,
