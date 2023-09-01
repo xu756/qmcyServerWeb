@@ -31,4 +31,15 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		},
 		rest.WithPrefix("/api/app/public/login"),
 	)
+
+	server.AddRoutes(
+		[]rest.Route{
+			{
+				Method:  http.MethodPost,
+				Path:    "/edit/upload",
+				Handler: EditUploadHandler(serverCtx),
+			},
+		},
+		rest.WithPrefix("/api/app/public"),
+	)
 }

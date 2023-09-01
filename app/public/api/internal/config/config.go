@@ -10,4 +10,9 @@ type Config struct {
 	rest.RestConf
 	Public    zrpc.RpcClientConf
 	RedisConf redis.RedisConf
+	Cos       struct {
+		Url       string
+		SecretID  string
+		SecretKey string
+	}
 }

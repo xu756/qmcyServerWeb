@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="查找">
+    <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="edit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/miniModel/contents_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/miniModel/contents_model.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/api/etc/public.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/etc/public.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/api/internal/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/api/internal/handler/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/handler/routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/api/internal/svc/service_context.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/svc/service_context.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/api/internal/types/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/types/types.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/api/public.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/public.api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +53,11 @@
     "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.mappings": "true",
+    "WebServerToolWindowPanel.toolwindow.highlight.symlinks": "true",
+    "WebServerToolWindowPanel.toolwindow.show.date": "false",
+    "WebServerToolWindowPanel.toolwindow.show.permissions": "false",
+    "WebServerToolWindowPanel.toolwindow.show.size": "false",
     "git-widget-placeholder": "main",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
@@ -166,10 +178,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="更新" />
-    <MESSAGE value="change" />
     <MESSAGE value="总数" />
     <MESSAGE value="查找" />
-    <option name="LAST_COMMIT_MESSAGE" value="查找" />
+    <MESSAGE value="change" />
+    <MESSAGE value="edit" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

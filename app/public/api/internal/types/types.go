@@ -29,3 +29,10 @@ type LoginRes struct {
 	Token  string `json:"token"`  //token
 	Expire int64  `json:"expire"` //过期时间
 }
+
+type EditUploadRes struct {
+	Url   string `json:"url"`   //图片地址
+	Alt   string `json:"alt"`   //图片alt
+	Href  string `json:"href"`  //图片链接
+	Width int64  `json:"width"` //图片宽度
+}
