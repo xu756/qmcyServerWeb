@@ -80,8 +80,8 @@ func (m *defaultContentsModel) EditContent(ctx context.Context, data *Contents) 
 // FindContent 查找单个内容
 func (m *defaultContentsModel) FindContent(ctx context.Context, id int64, ContentClass string) (*Contents, error) {
 	var res Contents
-	query := fmt.Sprintf("select %s from %s where id = $1 limit 1 and  content_class = $2", contentsRows, m.table)
-	err := m.QueryRowNoCacheCtx(ctx, &res, query, id, contentsRows)
+	query := fmt.Sprintf("select %s from %s where id = $1 and  content_class = $2 limit 1", contentsRows, m.table)
+	err := m.QueryRowNoCacheCtx(ctx, &res, query, id, ContentClass)
 	switch {
 	case err == nil:
 		return &res, nil

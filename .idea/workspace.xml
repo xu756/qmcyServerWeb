@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="总数">
+    <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="查找">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/api/admin.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/api/admin.api" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/api/internal/logic/get_contents_logic.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/api/internal/logic/get_contents_logic.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/api/internal/types/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/api/internal/types/types.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/rpc/admin.proto" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/rpc/admin.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/rpc/admin/admin.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/rpc/admin/admin.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/admin/rpc/internal/logic/get_contents_logic.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/admin/rpc/internal/logic/get_contents_logic.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/common/miniModel/contents_model.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/miniModel/contents_model.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pb/admin.pb.go" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +52,7 @@
     "last_opened_file_path": "/Users/xu756/开发/绮梦次元app/qmcyServerWeb/common/miniModel",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
-    "settings.editor.selected.configurable": "go.sdk"
+    "settings.editor.selected.configurable": "go.vgo"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
@@ -75,7 +68,7 @@
       <recent name="$PROJECT_DIR$/pb" />
     </key>
   </component>
-  <component name="RunManager" selected="Go 测试.github.com/xu756/qmcy/common/miniModel 中的 TestDelContent">
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose 部署">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="qmcyServerWeb" />
       <working_directory value="$PROJECT_DIR$" />
@@ -143,25 +136,27 @@
       <pattern value="^\QTestFindContent\E$" />
       <method v="2" />
     </configuration>
-    <configuration name="github.com/xu756/qmcy/common/miniModel 中的 TestFindGroupCode" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
-      <module name="qmcyServerWeb" />
-      <working_directory value="$PROJECT_DIR$/common/miniModel" />
-      <root_directory value="$PROJECT_DIR$" />
-      <kind value="PACKAGE" />
-      <package value="github.com/xu756/qmcy/common/miniModel" />
-      <directory value="$PROJECT_DIR$" />
-      <filePath value="$PROJECT_DIR$" />
-      <framework value="gotest" />
-      <pattern value="^\QTestFindGroupCode\E$" />
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose 部署" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml: Compose 部署" />
         <item itemvalue="Go 测试.github.com/xu756/qmcy/common/miniModel 中的 TestDelContent" />
         <item itemvalue="Go 测试.github.com/xu756/qmcy/common/miniModel 中的 TestEditContent" />
         <item itemvalue="Go 测试.github.com/xu756/qmcy/common/miniModel 中的 TestFindContent" />
         <item itemvalue="Go 测试.github.com/xu756/qmcy/common/miniModel 中的 TestAddContent" />
-        <item itemvalue="Go 测试.github.com/xu756/qmcy/common/miniModel 中的 TestFindGroupCode" />
       </list>
     </recent_temporary>
   </component>
@@ -173,7 +168,8 @@
     <MESSAGE value="更新" />
     <MESSAGE value="change" />
     <MESSAGE value="总数" />
-    <option name="LAST_COMMIT_MESSAGE" value="总数" />
+    <MESSAGE value="查找" />
+    <option name="LAST_COMMIT_MESSAGE" value="查找" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
