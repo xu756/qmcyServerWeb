@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="edit">
+      <change afterPath="$PROJECT_DIR$/app/public/api/internal/logic/upload_one_img_logic.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/api/internal/handler/edit_upload_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/handler/edit_upload_handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/public/api/internal/handler/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/handler/routes.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/api/internal/types/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/types/types.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/public/api/public.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/public.api" afterDir="false" />
     </list>

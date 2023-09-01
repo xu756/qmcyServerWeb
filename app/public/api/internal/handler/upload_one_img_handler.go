@@ -3,16 +3,16 @@ package handler
 import (
 	"context"
 	"github.com/tencentyun/cos-go-sdk-v5"
-	"github.com/xu756/qmcy/app/public/api/internal/logic"
-	"github.com/xu756/qmcy/app/public/api/internal/svc"
 	"github.com/xu756/qmcy/common/result"
 	"github.com/xu756/qmcy/common/tool"
 	"github.com/xu756/qmcy/common/xerr"
-	"log"
 	"net/http"
+
+	"github.com/xu756/qmcy/app/public/api/internal/logic"
+	"github.com/xu756/qmcy/app/public/api/internal/svc"
 )
 
-func EditUploadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
+func UploadOneImgHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		file, _, err := r.FormFile("file")
 		if err != nil {
@@ -44,15 +44,14 @@ func EditUploadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 			},
 		}
 		opt.ObjectPutHeaderOptions.XOptionHeader.Set("Pic-Operations", cos.EncodePicOperations(pic))
-		res, _, err := svcCtx.CosClient.CI.ImageProcess(context.Background(), path+"/"+name, pic)
+		_, _, err = svcCtx.CosClient.CI.ImageProcess(context.Background(), path+"/"+name, pic)
 		if err != nil {
 			result.HttpResult(r, w, nil, xerr.NewMsgError("压缩图片失败"+err.Error()))
 			return
 		}
-		log.Print(res)
-		l := logic.NewEditUploadLogic(r.Context(), svcCtx)
-		resp, err := l.EditUpload(path + "/" + name)
+
+		l := logic.NewUploadOneImgLogic(r.Context(), svcCtx)
+		resp, err := l.UploadOneImg(path + "/" + name)
 		result.HttpResult(r, w, resp, err)
 	}
-
 }

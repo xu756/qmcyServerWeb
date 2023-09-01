@@ -38,8 +38,6 @@ type EditUploadRes struct {
 }
 
 type UploadRes struct {
-	Url   string `json:"url"`   //图片地址
-	Alt   string `json:"alt"`   //图片alt
-	Href  string `json:"href"`  //图片链接
-	Width int64  `json:"width"` //图片宽度
+	Url    string `json:"url"`    //图片地址
+	Status string `json:"status"` //状态
 }

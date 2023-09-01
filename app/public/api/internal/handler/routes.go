@@ -39,6 +39,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 				Path:    "/edit/upload",
 				Handler: EditUploadHandler(serverCtx),
 			},
+			{
+				Method:  http.MethodPost,
+				Path:    "/uploadimg",
+				Handler: UploadOneImgHandler(serverCtx),
+			},
 		},
 		rest.WithPrefix("/api/app/public"),
 	)
