@@ -15,5 +15,5 @@ RedisConf:
 
 Cos:
   Url: https://qmcy-1304605483.cos.ap-chengdu.myqcloud.com
-  SecretID: AKIDMbjPvJhKuT6pjU5VlsmXCQQM5b6Z1aR7
-  SecretKey: Z0picR5Yqwtz7GQqKgzMbnAUfjgR0NYa
+  SecretID:
+  SecretKey:
