@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="edit">
-      <change afterPath="$PROJECT_DIR$/app/public/api/internal/logic/upload_one_img_logic.go" afterDir="false" />
+    <list default="true" id="17d66229-6c9e-4899-ab65-b0efd3af3341" name="更改" comment="上传">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/api/internal/handler/edit_upload_handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/handler/edit_upload_handler.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/api/internal/handler/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/handler/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/api/internal/types/types.go" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/internal/types/types.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/public/api/public.api" beforeDir="false" afterPath="$PROJECT_DIR$/app/public/api/public.api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/result/http_result.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/result/http_result.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/xerr/errors.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/xerr/errors.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +29,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -74,6 +76,7 @@
       <recent name="$PROJECT_DIR$/common/miniModel" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/pb" />
     </key>
   </component>
@@ -179,7 +182,8 @@
     <MESSAGE value="查找" />
     <MESSAGE value="change" />
     <MESSAGE value="edit" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit" />
+    <MESSAGE value="上传" />
+    <option name="LAST_COMMIT_MESSAGE" value="上传" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

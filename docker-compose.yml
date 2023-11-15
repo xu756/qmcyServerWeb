@@ -6,13 +6,13 @@ networks:
 
 services:
   app:
-    image: mymodd:latest
+    image: mymodd:latest    # 高效开发工具热重启
     container_name: app
     working_dir: /go/app
     networks:
       - env_net
     volumes:
-      - /Users/xu756/开发/绮梦次元app/qmcyServerWeb:/go/app
+      - ./:/go/app
 
   etcd:
     image: bitnami/etcd:latest
